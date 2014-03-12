@@ -290,7 +290,7 @@ public class WiFiDirectActivity extends Activity implements ChannelListener,
 
 		Toast.makeText(WiFiDirectActivity.this, "Players:" + players.size(),
 				Toast.LENGTH_LONG).show();
-		Intent intent = new Intent(this, ConnectionTest.class);
+		Intent intent = new Intent(this, GameActivity.class);
 		intent.putExtra("players", players);
 		startActivity(intent);
 	}
