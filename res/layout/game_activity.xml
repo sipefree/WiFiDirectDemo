@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_activity_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:keepScreenOn="true"
+    tools:context=".activity.GameActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/client_background"
+        tools:ignore="UselessParent" >
+
+        <RelativeLayout
+            android:id="@+id/layout_game_bid_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="5dp" >
+
+            <Button
+                android:id="@+id/button_bid_5"
+                android:layout_width="@dimen/game_activity_poker_chip_size"
+                android:layout_height="@dimen/game_activity_poker_chip_size"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/poker_chip_5"
+                android:onClick="bid" />
+
+            <Button
+                android:id="@+id/button_bid_10"
+                android:layout_width="@dimen/game_activity_poker_chip_size"
+                android:layout_height="@dimen/game_activity_poker_chip_size"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@+id/button_bid_5"
+                android:background="@drawable/poker_chip_10"
+                android:onClick="bid" />
+
+            <Button
+                android:id="@+id/button_bid_20"
+                android:layout_width="@dimen/game_activity_poker_chip_size"
+                android:layout_height="@dimen/game_activity_poker_chip_size"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@+id/button_bid_10"
+                android:background="@drawable/poker_chip_20"
+                android:onClick="bid" />
+
+            <Button
+                android:id="@+id/button_bid_50"
+                android:layout_width="@dimen/game_activity_poker_chip_size"
+                android:layout_height="@dimen/game_activity_poker_chip_size"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@+id/button_bid_20"
+                android:background="@drawable/poker_chip_50"
+                android:onClick="bid" />
+
+            <Button
+                android:id="@+id/button_bid_100"
+                android:layout_width="@dimen/game_activity_poker_chip_size"
+                android:layout_height="@dimen/game_activity_poker_chip_size"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/button_bid_50"
+                android:background="@drawable/poker_chip_100"
+                android:onClick="bid" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <RelativeLayout
+                android:id="@+id/layout_game_buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:gravity="right"
+                android:padding="7dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
+
+                <ToggleButton
+                    android:id="@+id/button_sit_stand"
+                    android:layout_width="@dimen/game_activity_button_width"
+                    android:layout_height="@dimen/game_activity_button_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_sit_stand_selector"
+                    android:onClick="sitOrStand"
+                    android:textOff=""
+                    android:textOn="" />
+
+                <Button
+                    android:id="@+id/button_all_in"
+                    android:layout_width="@dimen/game_activity_button_width"
+                    android:layout_height="@dimen/game_activity_button_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/button_sit_stand"
+                    android:background="@drawable/button_all_in_selector"
+                    android:onClick="allIn" />
+
+                <Button
+                    android:id="@+id/button_raise"
+                    android:layout_width="@dimen/game_activity_button_width"
+                    android:layout_height="@dimen/game_activity_button_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/button_all_in"
+                    android:background="@drawable/button_raise_selector"
+                    android:onClick="rise" />
+
+                <ToggleButton
+                    android:id="@+id/button_call_check"
+                    android:layout_width="@dimen/game_activity_button_width"
+                    android:layout_height="@dimen/game_activity_button_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/button_raise"
+                    android:background="@drawable/button_call_check_selector"
+                    android:onClick="callOrCheck"
+                    android:textOff=""
+                    android:textOn="" />
+
+                <Button
+                    android:id="@+id/button_fold"
+                    android:layout_width="@dimen/game_activity_button_width"
+                    android:layout_height="@dimen/game_activity_button_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/button_call_check"
+                    android:background="@drawable/button_fold_selector"
+                    android:onClick="fold" />
+
+                <com.srpol.poker.ui.BitmapView
+                    android:id="@+id/token"
+                    android:layout_width="@dimen/game_activity_token_size"
+                    android:layout_height="@dimen/game_activity_token_size"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="10dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_cards"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/layout_game_buttons"
+                android:paddingTop="7dp" >
+
+                <LinearLayout
+                    android:id="@+id/two_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="75dp"
+                    android:paddingBottom="20dp" >
+
+                    <com.srpol.poker.ui.BitmapView
+                        android:id="@+id/first_card"
+                        android:layout_width="@dimen/game_activity_card_width"
+                        android:layout_height="@dimen/game_activity_card_height"
+                        android:layout_marginRight="6dp" />
+
+                    <com.srpol.poker.ui.BitmapView
+                        android:id="@+id/second_card"
+                        android:layout_width="@dimen/game_activity_card_width"
+                        android:layout_height="@dimen/game_activity_card_height" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_toRightOf="@+id/two_card"
+                    android:background="@drawable/points_border"
+                    android:padding="4dp"
+                    android:paddingLeft="6dp"
+                    android:paddingBottom="20dp" >
+
+                    <RelativeLayout
+                        android:id="@+id/amount_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/amount_icon"
+                            android:src="@drawable/points_icon" />
+
+                        <TextView
+                            android:id="@+id/amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:textColor="@color/game_activity_text_color"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/game_activity_amount_font_size" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/bid_amount_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/amount_layout"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="@string/bid"
+                            android:textColor="@color/game_activity_text_color"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/game_activity_amount_text_font_size" />
+
+                        <TextView
+                            android:id="@+id/bid_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:textColor="@color/game_activity_text_color"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/game_activity_amount_font_size" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="false"
+                        android:layout_below="@+id/bid_amount_layout"
+                        android:orientation="horizontal"
+                        android:weightSum="2" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="@string/min"
+                            android:textColor="@color/game_activity_text_color"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/game_activity_amount_text_font_size" />
+
+                        <TextView
+                            android:id="@+id/minimum_bid_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:textColor="@color/game_activity_text_color"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/game_activity_amount_font_size" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/start_game_button"
+                    android:layout_width="@dimen/game_activity_button_width"
+                    android:layout_height="@dimen/game_activity_button_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/button_start_selector"
+                    android:onClick="startGame" />
+
+                <TextView
+                    android:id="@+id/room_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/points_border"
+                    android:padding="5dp"
+                    android:textColor="@color/game_activity_text_color"
+                    android:textIsSelectable="false"
+                    android:textSize="@dimen/game_activity_room_name_font_size" />
+
+                <ToggleButton
+                    android:id="@+id/button_turn_cards"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/button_turn_cards_selector"
+                    android:onClick="turnCards"
+                    android:textOff=""
+                    android:textOn="" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

@@ -30,4 +30,11 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/extra/PokerUtils.java</name>
+			<type>1</type>
+			<location>/Users/maddylinehan/Downloads/Poker/src/com/srpol/poker/logic/PokerUtils.java</location>
+		</link>
+	</linkedResources>
 </projectDescription>
