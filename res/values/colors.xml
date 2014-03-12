@@ -2,4 +2,21 @@
 <resources>
     <color name="status_bar_color">#FF000000</color>
     <color name="layout_border_color">#FF111111</color>
+        <color name="game_activity_text_color">#FFD0D5A7</color>
+  	<color name="menu_activity_button_text_color">#FFFFFEFE</color>
+	<color name="normal_player_border">#FFD0D5A7</color>
+	<color name="normal_player_background">#33FFFFFF</color>
+	<color name="normal_player_font">#FFD0D5A7</color>
+	<color name="normal_player_points_font">#FFFFFFFF</color>
+	<color name="dealer_background">#FFFFECE5</color>
+	<color name="dealer_font">#FF000000</color>
+	<color name="dealer_points_font">#FF5D5D5D</color>
+	<color name="small_blind_background">#FF4F3B73</color>
+	<color name="small_blind_font">#FFFFFFFF</color>
+	<color name="small_blind_points_font">#FFA4A4A4</color>
+	<color name="big_blind_background">#FFCBAF43</color>
+	<color name="big_blind_font">#FF000000</color>
+	<color name="big_blind_points_font">#FF5D5D5D</color>
+	<color name="active_player_border">#FFCC69FD</color>
+	<color name="current_bid_font">#FFFF9524</color>
 </resources>

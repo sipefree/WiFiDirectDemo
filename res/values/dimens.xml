@@ -17,5 +17,14 @@
 <resources>
     <dimen name="tablet_list_width">300dp</dimen>
     <dimen name="phone_list_height">200dp</dimen>
+         <dimen name="game_activity_poker_chip_size">70dp</dimen>
+     <dimen name="game_activity_token_size">80dp</dimen>
+     <dimen name="game_activity_card_height">200dp</dimen>
+     <dimen name="game_activity_card_width">130dp</dimen>
+     <dimen name="game_activity_button_width">135dp</dimen>
+     <dimen name="game_activity_button_height">47dp</dimen>
+     <dimen name="game_activity_amount_font_size">18sp</dimen>
+     <dimen name="game_activity_amount_text_font_size">15sp</dimen>
+     <dimen name="game_activity_room_name_font_size">15sp</dimen>
     
 </resources>
