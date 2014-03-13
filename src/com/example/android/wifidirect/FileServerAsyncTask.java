@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import ui.WiFiDirectActivity;
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;

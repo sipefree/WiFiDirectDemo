@@ -8,6 +8,8 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import ui.WiFiDirectActivity;
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;

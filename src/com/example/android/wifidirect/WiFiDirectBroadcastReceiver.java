@@ -16,6 +16,7 @@
 
 package com.example.android.wifidirect;
 
+import ui.WiFiDirectActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

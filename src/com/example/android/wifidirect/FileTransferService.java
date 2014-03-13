@@ -9,6 +9,8 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import ui.WiFiDirectActivity;
+
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;

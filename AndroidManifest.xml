@@ -24,7 +24,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         <activity
-            android:name=".Main"
+            android:name="ui.Main"
             android:label="@string/app_name"
             android:launchMode="singleTask" >
             <intent-filter>
@@ -39,7 +39,7 @@
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name=".WiFiDirectActivity"
+            android:name="ui.WiFiDirectActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask" >
         </activity>

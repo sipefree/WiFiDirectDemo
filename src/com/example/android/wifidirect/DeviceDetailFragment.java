@@ -16,6 +16,7 @@
 
 package com.example.android.wifidirect;
 
+import ui.WiFiDirectActivity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;

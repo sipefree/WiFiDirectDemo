@@ -1,8 +1,12 @@
 /**
  * 
  */
-package com.example.android.wifidirect;
+package ui;
 
+
+import com.example.android.wifidirect.R;
+import com.example.android.wifidirect.R.id;
+import com.example.android.wifidirect.R.layout;
 
 import android.app.Activity;
 import android.content.Intent;

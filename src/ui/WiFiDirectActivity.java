@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.wifidirect;
+package ui;
 
 import java.util.ArrayList;
 
@@ -36,8 +36,17 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.android.wifidirect.DeviceDetailFragment;
+import com.example.android.wifidirect.DeviceListFragment;
+import com.example.android.wifidirect.PlayerInfo;
+import com.example.android.wifidirect.R;
+import com.example.android.wifidirect.WiFiDirectBroadcastReceiver;
 import com.example.android.wifidirect.DeviceDetailFragment.NewPlayerListener;
 import com.example.android.wifidirect.DeviceListFragment.DeviceActionListener;
+import com.example.android.wifidirect.R.id;
+import com.example.android.wifidirect.R.layout;
+import com.example.android.wifidirect.R.menu;
+import com.example.android.wifidirect.R.string;
 
 /**
  * An activity that uses WiFi Direct APIs to discover and connect with available
