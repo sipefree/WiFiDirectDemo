@@ -1,5 +1,6 @@
-package extra;
-import extra.CommunicationBus.BusManager;
+package logic;
+import utils.Preconditions;
+import logic.CommunicationBus.BusManager;
 
 /**
  * Container for the {@link ServerModel} and {@link ClientModel}.

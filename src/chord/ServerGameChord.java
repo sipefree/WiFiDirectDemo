@@ -1,14 +1,14 @@
 package chord;
 
+import logic.PokerLogicController.PokerLogicEvent;
+import logic.PokerLogicController.PokerLogicEvent.UsernameEvent;
+import logic.PokerLogicController.PokerLogicEvent.BiddingEvent.BiddingType;
 import android.content.Context;
 import chord.ChordMessage.MessageType;
 
 import com.samsung.chord.IChordChannel;
 import com.squareup.otto.Subscribe;
 
-import extra.PokerLogicController.PokerLogicEvent;
-import extra.PokerLogicController.PokerLogicEvent.BiddingEvent.BiddingType;
-import extra.PokerLogicController.PokerLogicEvent.UsernameEvent;
 
 /**
  * Class responsible for handling {@link ChordMessage}s related to the server side of the game.

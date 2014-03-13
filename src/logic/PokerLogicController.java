@@ -1,9 +1,25 @@
-package extra;
+package logic;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import ui.GameActivity;
+import ui.GameActivity.GameActivityEvent;
+import ui.GameActivity.GameActivityEvent.SittingPlayersChangedEvent;
+import utils.Preconditions;
+
+import logic.ClientModel.ClientModelEvent.BlindEvent.BlindType;
+import logic.CommunicationBus.BusManager;
+import logic.PokerLogicController.PokerLogicEvent.AllInEvent;
+import logic.PokerLogicController.PokerLogicEvent.BiddingEvent;
+import logic.PokerLogicController.PokerLogicEvent.FoldEvent;
+import logic.PokerLogicController.PokerLogicEvent.SitEvent;
+import logic.PokerLogicController.PokerLogicEvent.StandEvent;
+import logic.PokerLogicController.PokerLogicEvent.UsernameEvent;
+import logic.PokerUtils.GameResult;
+import logic.ServerModel.GameState;
 
 import android.content.res.Resources;
 import android.util.Pair;
@@ -15,17 +31,7 @@ import com.example.android.wifidirect.R;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-import extra.ClientModel.ClientModelEvent.BlindEvent.BlindType;
-import extra.CommunicationBus.BusManager;
-import extra.GameActivity.GameActivityEvent.SittingPlayersChangedEvent;
-import extra.PokerLogicController.PokerLogicEvent.AllInEvent;
-import extra.PokerLogicController.PokerLogicEvent.BiddingEvent;
-import extra.PokerLogicController.PokerLogicEvent.FoldEvent;
-import extra.PokerLogicController.PokerLogicEvent.SitEvent;
-import extra.PokerLogicController.PokerLogicEvent.StandEvent;
-import extra.PokerLogicController.PokerLogicEvent.UsernameEvent;
-import extra.PokerUtils.GameResult;
-import extra.ServerModel.GameState;
+import events.BusEvent;
 
 /**
  * Encapsulates whole logic of the poker game.

@@ -1,4 +1,4 @@
-package extra;
+package logic;
 
 import java.util.ArrayList;
 import java.util.Comparator;

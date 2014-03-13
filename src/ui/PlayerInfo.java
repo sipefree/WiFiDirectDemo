@@ -1,5 +1,7 @@
-package extra;
+package ui;
 import java.util.List;
+
+import logic.Card;
 
 /**
  * Contains information about player's current game state. Used for refresing poker table view.

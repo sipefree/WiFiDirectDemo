@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu_bg"
+    tools:context=".activity.MenuActivity"
+    tools:ignore="Overdraw" >
+
+    <Button
+        android:id="@+id/button_settings"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/button_violet_selector"
+        android:onClick="settingsClick"
+        android:padding="10dp"
+        android:text="@string/settings"
+        android:textColor="@color/menu_activity_button_text_color" />
+    
+    <Button 
+        android:id="@+id/button_about"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/button_violet_selector"
+        android:onClick="aboutClick"
+        android:padding="10dp"
+        android:text="@string/about"
+        android:textColor="@color/menu_activity_button_text_color"/>
+
+    <TextView
+        android:id="@+id/name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/hello"
+        android:clickable="true"
+        android:onClick="onNameViewClick"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/menu_activity_button_text_color" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/button_client"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_blue_selector"
+            android:onClick="clientClick"
+            android:padding="10dp"
+            android:text="@string/start_as_client"
+            android:textColor="@color/menu_activity_button_text_color" />
+
+        <Button
+            android:id="@+id/button_server"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_blue_selector"
+            android:onClick="serverClick"
+            android:padding="10dp"
+            android:text="@string/start_as_server"
+            android:textColor="@color/menu_activity_button_text_color" />
+    </LinearLayout>
+
+</RelativeLayout>

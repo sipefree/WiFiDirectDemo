@@ -14,14 +14,14 @@ import android.widget.TextView;
  * @author paul
  *
  */
-public class StartScreen extends Activity
+public class Main extends Activity
 {
 	private TextView userNameText;
 
 	/**
 	 * 
 	 */
-	public StartScreen()
+	public Main()
 	{
 		// TODO Auto-generated constructor stub
 	}

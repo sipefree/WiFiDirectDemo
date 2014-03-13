@@ -1,5 +1,6 @@
 package chord;
 
+import logic.CommunicationBus;
 import android.content.Context;
 
 import com.samsung.chord.ChordManager;
@@ -8,13 +9,12 @@ import com.samsung.chord.IChordChannelListener;
 import com.samsung.chord.IChordManagerListener;
 import com.squareup.otto.Bus;
 
-import extra.CommunicationBus;
 
 /**
  * Contains general methods related to the communication over Chord. Intitializes {@link ChordManager} and handles
  * messages passed over Chord channels.
  */
-public abstract class AbstractChord implements extra.CommunicationBus.BusManager {
+public abstract class AbstractChord implements logic.CommunicationBus.BusManager {
 
 	private static final String PAYLOAD_SUFFIX = "_CHORD_TYPE";
 	private final String mPayloadType;

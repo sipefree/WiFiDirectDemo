@@ -1,11 +1,11 @@
 package chord;
 
+import ui.GameActivity.GameActivityEvent;
+import logic.Card;
+import logic.ClientModel.ClientModelEvent;
+import logic.ClientModel.ClientModelEvent.BlindEvent.BlindType;
 import android.content.Context;
 import android.util.Pair;
-import extra.Card;
-import extra.ClientModel.ClientModelEvent;
-import extra.ClientModel.ClientModelEvent.BlindEvent.BlindType;
-import extra.GameActivity.GameActivityEvent;
 
 /**
  * Class responsible for handling {@link ChordMessage}s related to the game.

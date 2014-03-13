@@ -1,10 +1,13 @@
-package extra;
+package logic;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import extra.Card.CardColor;
-import extra.Card.CardRank;
+import utils.Preconditions;
+
+import logic.Card.CardColor;
+import logic.Card.CardRank;
+
 
 /**
  * Represents deck of 52 {@link Card}s.

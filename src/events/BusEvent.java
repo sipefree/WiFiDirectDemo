@@ -1,7 +1,10 @@
-package extra;
+package events;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import utils.Preconditions;
+
 
 /**
  * Represents game events passed through the Bus.

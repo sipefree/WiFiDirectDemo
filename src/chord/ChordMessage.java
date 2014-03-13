@@ -10,7 +10,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import extra.Preconditions;
+import utils.Preconditions;
+
 
 /**
  * Represents single message passed over Chord channels.

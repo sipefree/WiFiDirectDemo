@@ -1,8 +1,31 @@
-package extra;
+package ui;
 import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+
+import ui.GameActivity.GameActivityEvent.AmountEvent;
+import ui.GameActivity.GameActivityEvent.CardsEvent;
+import ui.GameActivity.GameActivityEvent.ClearCardsEvent;
+import ui.GameActivity.GameActivityEvent.GameEndEvent;
+import ui.GameActivity.GameActivityEvent.SitEvent;
+import ui.GameActivity.GameActivityEvent.SittingPlayersChangedEvent;
+import ui.GameActivity.GameActivityEvent.StandEvent;
+import ui.GameActivity.GameActivityEvent.TableFullEvent;
+import ui.GameActivity.GameActivityEvent.TokenEvent;
+import ui.GameActivity.GameActivityEvent.TurnEndEvent;
+import ui.GameActivity.GameActivityEvent.YourTurnEvent;
+import ui.GameActivity.GameActivityEvent.TokenEvent.TokenType;
+import utils.BitmapCache;
+
+import logic.Card;
+import logic.CommunicationBus;
+import logic.Model;
+import logic.PokerLogicController;
+import logic.ClientModel.ClientModelEvent;
+import logic.CommunicationBus.BusManager;
+import logic.PokerLogicController.StartGameEvent;
+import logic.ServerModel.GameState;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -35,23 +58,9 @@ import chord.ServerGameChord;
 import com.example.android.wifidirect.R;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
+import static utils.Preconditions.checkState;
 
-import extra.ClientModel.ClientModelEvent;
-import extra.CommunicationBus.BusManager;
-import extra.GameActivity.GameActivityEvent.AmountEvent;
-import extra.GameActivity.GameActivityEvent.CardsEvent;
-import extra.GameActivity.GameActivityEvent.ClearCardsEvent;
-import extra.GameActivity.GameActivityEvent.GameEndEvent;
-import extra.GameActivity.GameActivityEvent.SitEvent;
-import extra.GameActivity.GameActivityEvent.SittingPlayersChangedEvent;
-import extra.GameActivity.GameActivityEvent.StandEvent;
-import extra.GameActivity.GameActivityEvent.TableFullEvent;
-import extra.GameActivity.GameActivityEvent.TokenEvent;
-import extra.GameActivity.GameActivityEvent.TokenEvent.TokenType;
-import extra.GameActivity.GameActivityEvent.TurnEndEvent;
-import extra.GameActivity.GameActivityEvent.YourTurnEvent;
-import extra.PokerLogicController.StartGameEvent;
-import extra.ServerModel.GameState;
+import events.BusEvent;
 
 /*
  * Main game activity presented on the client side.
@@ -72,6 +81,8 @@ public class GameActivity extends Activity implements BusManager {
 	private Card mFirstCard;
 	private Card mSecondCard;
 
+	//private ScreenCastManager mManager;
+	private Object mManager;
 	private boolean mAllShareEnabled;
 	private Dialog mAllShareDialog;
 	private Dialog mNoAllShareCastDialog;

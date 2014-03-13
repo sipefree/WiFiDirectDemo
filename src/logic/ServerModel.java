@@ -1,12 +1,15 @@
-package extra;
+package logic;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import ui.PlayerInfo;
+import utils.Preconditions;
+
+import logic.CommunicationBus.BusManager;
+
 import com.squareup.otto.Bus;
 
-import extra.CommunicationBus.BusManager;
-import extra.PokerTableView.PokerTableEvent;
 
 /**
  * Contains the game model used on the server side.
