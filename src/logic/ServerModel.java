@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ui.PlayerInfo;
+import ui.PokerTableView.PokerTableEvent;
 import utils.Preconditions;
 
 import logic.CommunicationBus.BusManager;

@@ -1,14 +1,4 @@
-/*
- ********************************************************************************
- * Copyright (c) 2013 Samsung Electronics, Inc.
- * All rights reserved.
- *
- * This software is a confidential and proprietary information of Samsung
- * Electronics, Inc. ("Confidential Information"). You shall not disclose such
- * Confidential Information and shall use it only in accordance with the terms
- * of the license agreement you entered into with Samsung Electronics.
- ********************************************************************************
- */
+
 package ui;
 
 import java.util.List;
@@ -27,16 +17,16 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.LinearLayout;
 
+import com.example.android.wifidirect.R;
 import com.sec.android.allshare.screen.ScreenCastManager;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-import com.srpol.poker.R;
-import com.srpol.poker.events.BusEvent;
-import com.srpol.poker.logic.Card;
-import com.srpol.poker.logic.CommunicationBus;
-import com.srpol.poker.logic.CommunicationBus.BusManager;
-import com.srpol.poker.logic.ServerModel;
-import com.srpol.poker.utils.BitmapCache;
+import events.BusEvent;
+import logic.Card;
+import logic.CommunicationBus;
+import logic.CommunicationBus.BusManager;
+import logic.ServerModel;
+import utils.BitmapCache;
 
 /**
  * Represents poker table which is displayed on the TV screen.
@@ -59,7 +49,7 @@ public class PokerTableView extends SurfaceView implements SurfaceHolder.Callbac
 	private final Paint mCurrentBidFont;
 	private final Paint mBitmapPaint;
 
-	private final BitmapCache mMemoryCache;
+	private final utils.BitmapCache mMemoryCache;
 	private final String mTableName;
 
 	public PokerTableView(Context context, ScreenCastManager screenCastManager, BitmapCache memoryCache,
