@@ -1,25 +1,12 @@
-/*
- ********************************************************************************
- * Copyright (c) 2013 Samsung Electronics, Inc.
- * All rights reserved.
- *
- * This software is a confidential and proprietary information of Samsung
- * Electronics, Inc. ("Confidential Information"). You shall not disclose such
- * Confidential Information and shall use it only in accordance with the terms
- * of the license agreement you entered into with Samsung Electronics.
- ********************************************************************************
- */
-package com.srpol.poker.logic;
-
+package extra;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import com.squareup.otto.Bus;
-import com.srpol.poker.logic.CommunicationBus.BusManager;
-import com.srpol.poker.ui.PlayerInfo;
-import com.srpol.poker.ui.PokerTableView.PokerTableEvent;
-import com.srpol.poker.utils.Preconditions;
+
+import extra.CommunicationBus.BusManager;
+import extra.PokerTableView.PokerTableEvent;
 
 /**
  * Contains the game model used on the server side.

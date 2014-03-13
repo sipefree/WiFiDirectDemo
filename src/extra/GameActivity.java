@@ -1,18 +1,4 @@
-/*
- ********************************************************************************
- * Copyright (c) 2013 Samsung Electronics, Inc.
- * All rights reserved.
- *
- * This software is a confidential and proprietary information of Samsung
- * Electronics, Inc. ("Confidential Information"). You shall not disclose such
- * Confidential Information and shall use it only in accordance with the terms
- * of the license agreement you entered into with Samsung Electronics.
- ********************************************************************************
- */
-package com.srpol.poker.ui;
-
-import static com.srpol.poker.utils.Preconditions.checkState;
-
+package extra;
 import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,50 +19,39 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.telephony.ServiceState;
 import android.util.Pair;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import chord.ClientGameChord;
+import chord.GameChord;
+import chord.GameChord.JoinedToServerEvent;
+import chord.GameChord.ServerDisconnectedEvent;
+import chord.ServerGameChord;
 
-import com.sec.android.allshare.ServiceConnector;
-import com.sec.android.allshare.ServiceConnector.IServiceConnectEventListener;
-import com.sec.android.allshare.ServiceConnector.ServiceState;
-import com.sec.android.allshare.ServiceProvider;
-import com.sec.android.allshare.screen.ScreenCastManager;
-import com.sec.android.allshare.screen.ScreenCastManager.IScreenCastEventListener;
-import com.sec.android.allshare.screen.ScreenCastManager.ScreenMode;
+import com.example.android.wifidirect.R;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-import com.srpol.poker.R;
-import com.srpol.poker.chord.ClientGameChord;
-import com.srpol.poker.chord.GameChord;
-import com.srpol.poker.chord.GameChord.JoinedToServerEvent;
-import com.srpol.poker.chord.GameChord.ServerDisconnectedEvent;
-import com.srpol.poker.chord.ServerGameChord;
-import com.srpol.poker.events.BusEvent;
-import com.srpol.poker.logic.Card;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent;
-import com.srpol.poker.logic.CommunicationBus;
-import com.srpol.poker.logic.CommunicationBus.BusManager;
-import com.srpol.poker.logic.Model;
-import com.srpol.poker.logic.PokerLogicController;
-import com.srpol.poker.logic.PokerLogicController.StartGameEvent;
-import com.srpol.poker.logic.ServerModel.GameState;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.AmountEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.CardsEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.ClearCardsEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.GameEndEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.SitEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.SittingPlayersChangedEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.StandEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.TableFullEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.TokenEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.TokenEvent.TokenType;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.TurnEndEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.YourTurnEvent;
-import com.srpol.poker.utils.BitmapCache;
+
+import extra.ClientModel.ClientModelEvent;
+import extra.CommunicationBus.BusManager;
+import extra.GameActivity.GameActivityEvent.AmountEvent;
+import extra.GameActivity.GameActivityEvent.CardsEvent;
+import extra.GameActivity.GameActivityEvent.ClearCardsEvent;
+import extra.GameActivity.GameActivityEvent.GameEndEvent;
+import extra.GameActivity.GameActivityEvent.SitEvent;
+import extra.GameActivity.GameActivityEvent.SittingPlayersChangedEvent;
+import extra.GameActivity.GameActivityEvent.StandEvent;
+import extra.GameActivity.GameActivityEvent.TableFullEvent;
+import extra.GameActivity.GameActivityEvent.TokenEvent;
+import extra.GameActivity.GameActivityEvent.TokenEvent.TokenType;
+import extra.GameActivity.GameActivityEvent.TurnEndEvent;
+import extra.GameActivity.GameActivityEvent.YourTurnEvent;
+import extra.PokerLogicController.StartGameEvent;
+import extra.ServerModel.GameState;
 
 /*
  * Main game activity presented on the client side.
@@ -92,9 +67,6 @@ public class GameActivity extends Activity implements BusManager {
 	private PokerLogicController mLogicController;
 	private List<BusManager> mManagers;
 	private boolean mIsClient;
-	private ServiceProvider mServiceProvider;
-	private PokerTableView mGameboard;
-	private ScreenCastManager mManager;
 	private BitmapCache mMemoryCache;
 	private Vibrator mVibrator;
 	private Card mFirstCard;
@@ -234,47 +206,48 @@ public class GameActivity extends Activity implements BusManager {
 			mGameChord = new ClientGameChord(this, roomName, GAME_NAME, userName);
 			mStartGame.setVisibility(View.GONE);
 		} else {
-			roomName = getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 3));
-			mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);
-
-			ServiceConnector.createServiceProvider(this, new IServiceConnectEventListener() {
-
-				@Override
-				public void onCreated(ServiceProvider sprovider, ServiceState state) {
-					mServiceProvider = sprovider;
-					mManager = sprovider.getScreenCastManager();
-					if (mManager != null) {
-						mNoAllShareCastDialog.dismiss();
-						mAllShareDialog.show();
-						mManager.setScreenCastEventListener(new IScreenCastEventListener() {
-
-							@Override
-							public void onStopped(ScreenCastManager screencastmanager) {
-								mAllShareEnabled = false;
-								mAllShareDialog.show();
-							}
-
-							@Override
-							public void onStarted(ScreenCastManager screencastmanager) {
-								mAllShareEnabled = true;
-								mAllShareDialog.dismiss();
-								screencastmanager.setMode(ScreenMode.DUAL);
-							}
-						});
-
-						mGameboard = new PokerTableView(GameActivity.this, mManager, mMemoryCache, roomName);
-						mGameActivityLayout.addView(mGameboard, 0);
-						mGameboard.startBus();
-					}
-				}
-
-				@Override
-				public void onDeleted(ServiceProvider sprovider) {
-				}
-			});
-
-			mLogicController = new PokerLogicController(model, getResources());
-			mManagers.add(mLogicController);
+			//TODO:I am a server(table viewer?)
+//			roomName = getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 3));
+//			mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);
+//
+//			ServiceConnector.createServiceProvider(this, new IServiceConnectEventListener() {
+//
+//				@Override
+//				public void onCreated(ServiceProvider sprovider, ServiceState state) {
+//					mServiceProvider = sprovider;
+//					mManager = sprovider.getScreenCastManager();
+//					if (mManager != null) {
+//						mNoAllShareCastDialog.dismiss();
+//						mAllShareDialog.show();
+//						mManager.setScreenCastEventListener(new IScreenCastEventListener() {
+//
+//							@Override
+//							public void onStopped(ScreenCastManager screencastmanager) {
+//								mAllShareEnabled = false;
+//								mAllShareDialog.show();
+//							}
+//
+//							@Override
+//							public void onStarted(ScreenCastManager screencastmanager) {
+//								mAllShareEnabled = true;
+//								mAllShareDialog.dismiss();
+//								screencastmanager.setMode(ScreenMode.DUAL);
+//							}
+//						});
+//
+//						mGameboard = new PokerTableView(GameActivity.this, mManager, mMemoryCache, roomName);
+//						mGameActivityLayout.addView(mGameboard, 0);
+//						mGameboard.startBus();
+//					}
+//				}
+//
+//				@Override
+//				public void onDeleted(ServiceProvider sprovider) {
+//				}
+//			});
+//
+//			mLogicController = new PokerLogicController(model, getResources());
+//			mManagers.add(mLogicController);
 		}
 
 		roomNameView.setText(roomName);
@@ -290,11 +263,7 @@ public class GameActivity extends Activity implements BusManager {
 	protected void onResume() {
 		super.onResume();
 		if (!mIsClient) {
-			if (mManager == null) {
-				mNoAllShareCastDialog.show();
-			} else if (!mAllShareEnabled) {
-				mAllShareDialog.show();
-			}
+			//i am server
 		}
 	}
 
@@ -332,18 +301,18 @@ public class GameActivity extends Activity implements BusManager {
 			manager.stopBus();
 		}
 
-		if (mGameboard != null) {
-			mGameboard.stopBus();
-		}
-
-		mGameChord.stopChord();
-		if (mManager != null) {
-			mManager.stop();
-		}
-
-		if (mServiceProvider != null) {
-			ServiceConnector.deleteServiceProvider(mServiceProvider);
-		}
+//		if (mGameboard != null) {
+//			mGameboard.stopBus();
+//		}
+//
+//		mGameChord.stopChord();
+//		if (mManager != null) {
+//			mManager.stop();
+//		}
+//
+//		if (mServiceProvider != null) {
+//			ServiceConnector.deleteServiceProvider(mServiceProvider);
+//		}
 
 		unregisterReceiver(mWiFiBroadcastReceiver);
 

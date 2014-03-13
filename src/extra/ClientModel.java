@@ -1,45 +1,32 @@
-/*
- ********************************************************************************
- * Copyright (c) 2013 Samsung Electronics, Inc.
- * All rights reserved.
- *
- * This software is a confidential and proprietary information of Samsung
- * Electronics, Inc. ("Confidential Information"). You shall not disclose such
- * Confidential Information and shall use it only in accordance with the terms
- * of the license agreement you entered into with Samsung Electronics.
- ********************************************************************************
- */
-package com.srpol.poker.logic;
-
+package extra;
 import android.util.Pair;
+import chord.ChordMessage;
+import chord.ChordMessage.MessageType;
 
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-import com.srpol.poker.chord.ChordMessage;
-import com.srpol.poker.chord.ChordMessage.MessageType;
-import com.srpol.poker.events.BusEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.AllInEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.BidEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.BlindEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.BlindEvent.BlindType;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.CallEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.CardsEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.CheckEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.ClearCardsEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.DealerEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.FoldEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.GameEnd;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.PlayerStateEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.RaiseEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.SitEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.StandEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.YourTurnEvent;
-import com.srpol.poker.logic.CommunicationBus.BusManager;
-import com.srpol.poker.logic.PokerLogicController.PokerLogicEvent.BiddingEvent.BiddingType;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.TokenEvent.TokenType;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.YourTurnEvent.YourTurnType;
-import com.srpol.poker.utils.Preconditions;
+
+import extra.ClientModel.ClientModelEvent.AllInEvent;
+import extra.ClientModel.ClientModelEvent.BidEvent;
+import extra.ClientModel.ClientModelEvent.BlindEvent;
+import extra.ClientModel.ClientModelEvent.BlindEvent.BlindType;
+import extra.ClientModel.ClientModelEvent.CallEvent;
+import extra.ClientModel.ClientModelEvent.CardsEvent;
+import extra.ClientModel.ClientModelEvent.CheckEvent;
+import extra.ClientModel.ClientModelEvent.ClearCardsEvent;
+import extra.ClientModel.ClientModelEvent.DealerEvent;
+import extra.ClientModel.ClientModelEvent.FoldEvent;
+import extra.ClientModel.ClientModelEvent.GameEnd;
+import extra.ClientModel.ClientModelEvent.PlayerStateEvent;
+import extra.ClientModel.ClientModelEvent.RaiseEvent;
+import extra.ClientModel.ClientModelEvent.SitEvent;
+import extra.ClientModel.ClientModelEvent.StandEvent;
+import extra.ClientModel.ClientModelEvent.YourTurnEvent;
+import extra.CommunicationBus.BusManager;
+import extra.GameActivity.GameActivityEvent;
+import extra.GameActivity.GameActivityEvent.TokenEvent.TokenType;
+import extra.GameActivity.GameActivityEvent.YourTurnEvent.YourTurnType;
+import extra.PokerLogicController.PokerLogicEvent.BiddingEvent.BiddingType;
 
 /**
  * Contains the game model used on the client side.

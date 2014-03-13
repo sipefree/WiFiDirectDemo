@@ -1,16 +1,4 @@
-/*
- ********************************************************************************
- * Copyright (c) 2013 Samsung Electronics, Inc.
- * All rights reserved.
- *
- * This software is a confidential and proprietary information of Samsung
- * Electronics, Inc. ("Confidential Information"). You shall not disclose such
- * Confidential Information and shall use it only in accordance with the terms
- * of the license agreement you entered into with Samsung Electronics.
- ********************************************************************************
- */
-package com.srpol.poker.logic;
-
+package extra;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -19,26 +7,25 @@ import java.util.Map;
 
 import android.content.res.Resources;
 import android.util.Pair;
+import chord.ChordMessage;
+import chord.ChordMessage.MessageType;
+import chord.GameChord.ClientDisconnectedEvent;
 
+import com.example.android.wifidirect.R;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-import com.srpol.poker.R;
-import com.srpol.poker.chord.ChordMessage;
-import com.srpol.poker.chord.ChordMessage.MessageType;
-import com.srpol.poker.chord.GameChord.ClientDisconnectedEvent;
-import com.srpol.poker.events.BusEvent;
-import com.srpol.poker.logic.ClientModel.ClientModelEvent.BlindEvent.BlindType;
-import com.srpol.poker.logic.CommunicationBus.BusManager;
-import com.srpol.poker.logic.PokerLogicController.PokerLogicEvent.AllInEvent;
-import com.srpol.poker.logic.PokerLogicController.PokerLogicEvent.BiddingEvent;
-import com.srpol.poker.logic.PokerLogicController.PokerLogicEvent.FoldEvent;
-import com.srpol.poker.logic.PokerLogicController.PokerLogicEvent.SitEvent;
-import com.srpol.poker.logic.PokerLogicController.PokerLogicEvent.StandEvent;
-import com.srpol.poker.logic.PokerLogicController.PokerLogicEvent.UsernameEvent;
-import com.srpol.poker.logic.PokerUtils.GameResult;
-import com.srpol.poker.logic.ServerModel.GameState;
-import com.srpol.poker.ui.GameActivity.GameActivityEvent.SittingPlayersChangedEvent;
-import com.srpol.poker.utils.Preconditions;
+
+import extra.ClientModel.ClientModelEvent.BlindEvent.BlindType;
+import extra.CommunicationBus.BusManager;
+import extra.GameActivity.GameActivityEvent.SittingPlayersChangedEvent;
+import extra.PokerLogicController.PokerLogicEvent.AllInEvent;
+import extra.PokerLogicController.PokerLogicEvent.BiddingEvent;
+import extra.PokerLogicController.PokerLogicEvent.FoldEvent;
+import extra.PokerLogicController.PokerLogicEvent.SitEvent;
+import extra.PokerLogicController.PokerLogicEvent.StandEvent;
+import extra.PokerLogicController.PokerLogicEvent.UsernameEvent;
+import extra.PokerUtils.GameResult;
+import extra.ServerModel.GameState;
 
 /**
  * Encapsulates whole logic of the poker game.
