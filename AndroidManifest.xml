@@ -24,7 +24,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         <activity
-            android:name="ui.Main"
+            android:name="ui.MenuActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask" >
             <intent-filter>
@@ -48,6 +48,9 @@
         <service
             android:name="wifidirect.FileTransferService"
             android:enabled="true" />
+        
+        <activity android:name="ui.GameActivity" android:label="@string/app_name" android:screenOrientation="sensorLandscape"></activity>
+        <activity android:name="ui.ServerActivity" android:label="@string/app_name" android:screenOrientation="sensorLandscape"></activity>
     </application>
 
 </manifest>

@@ -134,7 +134,7 @@
                     android:background="@drawable/button_fold_selector"
                     android:onClick="fold" />
 
-                <com.srpol.poker.ui.BitmapView
+                <ui.BitmapView
                     android:id="@+id/token"
                     android:layout_width="@dimen/game_activity_token_size"
                     android:layout_height="@dimen/game_activity_token_size"
@@ -160,13 +160,13 @@
                     android:layout_marginLeft="75dp"
                     android:paddingBottom="20dp" >
 
-                    <com.srpol.poker.ui.BitmapView
+                    <ui.BitmapView
                         android:id="@+id/first_card"
                         android:layout_width="@dimen/game_activity_card_width"
                         android:layout_height="@dimen/game_activity_card_height"
                         android:layout_marginRight="6dp" />
 
-                    <com.srpol.poker.ui.BitmapView
+                    <ui.BitmapView
                         android:id="@+id/second_card"
                         android:layout_width="@dimen/game_activity_card_width"
                         android:layout_height="@dimen/game_activity_card_height" />

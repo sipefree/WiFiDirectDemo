@@ -1,4 +1,3 @@
-
 package ui;
 
 import java.util.List;
@@ -17,10 +16,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.LinearLayout;
 
-import com.example.android.wifidirect.R;
-import com.sec.android.allshare.screen.ScreenCastManager;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
+import com.example.android.wifidirect.R;
 import events.BusEvent;
 import logic.Card;
 import logic.CommunicationBus;
@@ -49,10 +47,10 @@ public class PokerTableView extends SurfaceView implements SurfaceHolder.Callbac
 	private final Paint mCurrentBidFont;
 	private final Paint mBitmapPaint;
 
-	private final utils.BitmapCache mMemoryCache;
+	private final BitmapCache mMemoryCache;
 	private final String mTableName;
 
-	public PokerTableView(Context context, ScreenCastManager screenCastManager, BitmapCache memoryCache,
+	public PokerTableView(Context context, BitmapCache memoryCache,
 			String tableName) {
 		super(context);
 		mBus = CommunicationBus.getInstance();
@@ -61,7 +59,6 @@ public class PokerTableView extends SurfaceView implements SurfaceHolder.Callbac
 		mHolder = getHolder();
 		mHolder.setFormat(PixelFormat.RGBA_8888);
 		mHolder.addCallback(this);
-		screenCastManager.setDualScreenDrawer(this);
 
 		mTableName = tableName;
 		mMemoryCache = memoryCache;

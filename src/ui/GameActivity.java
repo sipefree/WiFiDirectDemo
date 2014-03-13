@@ -81,12 +81,6 @@ public class GameActivity extends Activity implements BusManager {
 	private Card mFirstCard;
 	private Card mSecondCard;
 
-	//private ScreenCastManager mManager;
-	private Object mManager;
-	private boolean mAllShareEnabled;
-	private Dialog mAllShareDialog;
-	private Dialog mNoAllShareCastDialog;
-
 	private View mBid5;
 	private View mBid10;
 	private View mBid20;
@@ -188,38 +182,14 @@ public class GameActivity extends Activity implements BusManager {
 
 		final String roomName;
 
-		mAllShareDialog = new AlertDialog.Builder(GameActivity.this).setMessage(R.string.all_share_dialog_message)
-				.setPositiveButton(R.string.ok, new OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						mManager.activateManagerUI();
-					}
-				}).setNegativeButton(R.string.all_share_dialog_exit, new OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						finish();
-					}
-				}).setCancelable(false).create();
-
-		mNoAllShareCastDialog = new AlertDialog.Builder(GameActivity.this)
-				.setMessage(R.string.no_all_share_cast_dialog).setPositiveButton(R.string.ok, new OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						finish();
-					}
-				}).setCancelable(false).create();
-
 		if (mIsClient) {
 			roomName = getIntent().getStringExtra(SERVER_NAME);
 			mGameChord = new ClientGameChord(this, roomName, GAME_NAME, userName);
 			mStartGame.setVisibility(View.GONE);
 		} else {
 			//TODO:I am a server(table viewer?)
-//			roomName = getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 3));
-//			mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);
+			roomName = getString(R.string.room).concat(UUID.randomUUID().toString().substring(0, 3));
+			mGameChord = new ServerGameChord(this, roomName, GAME_NAME, userName);
 //
 //			ServiceConnector.createServiceProvider(this, new IServiceConnectEventListener() {
 //
@@ -300,8 +270,6 @@ public class GameActivity extends Activity implements BusManager {
 
 	@Override
 	protected void onPause() {
-		mNoAllShareCastDialog.dismiss();
-		mAllShareDialog.dismiss();
 		super.onPause();
 	}
 
@@ -328,8 +296,6 @@ public class GameActivity extends Activity implements BusManager {
 		unregisterReceiver(mWiFiBroadcastReceiver);
 
 		super.onDestroy();
-		mAllShareDialog.dismiss();
-		mNoAllShareCastDialog.dismiss();
 	}
 
 	private void registerWifiStateReceiver() {

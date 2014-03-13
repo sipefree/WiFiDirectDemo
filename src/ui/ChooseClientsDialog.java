@@ -20,6 +20,9 @@ import wifidirect.ConnectionTest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.net.wifi.p2p.WifiP2pDeviceList;
+import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
+import android.net.wifi.p2p.WifiP2pManager.ConnectionInfoListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,38 +36,19 @@ import android.widget.TextView;
 import com.example.android.wifidirect.R;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-import chord.AbstractChord.NodeJoinedOnPublicChannelEvent;
-import chord.AbstractChord.NodeLeftOnPublicChannelEvent;
-import chord.ConnectionChord;
-import chord.ConnectionChord.OnServerListChangedListener;
 import logic.CommunicationBus;
 import logic.CommunicationBus.BusManager;
 
 /**
  * {@link DialogFragment} for choosing server from the list of discovered servers.
  */
-public class ChooseServerDialog extends DialogFragment implements chord.ConnectionChord.OnServerListChangedListener, OnItemClickListener,
+public class ChooseClientsDialog extends DialogFragment implements PeerListListener, ConnectionInfoListener, OnItemClickListener,
 		logic.CommunicationBus.BusManager {
 
-	private chord.ConnectionChord mConnectionChord;
-	private OnServerChosenListener mOnServerChosenListener;
-	private ServerAdapter mServerAdapter;
+	private ClientAdapter mClientAdapter;
+	private OnClientAddedListener mOnClientAddedListener;
 	private Bus mBus;
 	private MenuActivity mParentActivity;
-
-	@Subscribe
-	public void onNodeLeftOnPublicChannel(chord.AbstractChord.NodeLeftOnPublicChannelEvent event) {
-		findServers();
-	}
-
-	@Subscribe
-	public void onNodeJoinedOnPublicChannel(chord.AbstractChord.NodeJoinedOnPublicChannelEvent event) {
-		findServers();
-	}
-
-	private void findServers() {
-		mConnectionChord.findServers();
-	}
 
 	@Override
 	public void onAttach(Activity parent) {
@@ -82,8 +66,7 @@ public class ChooseServerDialog extends DialogFragment implements chord.Connecti
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mBus = logic.CommunicationBus.getInstance();
-		mConnectionChord = new ConnectionChord(getActivity(), GameActivity.GAME_NAME, ChooseServerDialog.this);
-		mOnServerChosenListener = (OnServerChosenListener) getActivity();
+		mOnClientAddedListener = (OnClientAddedListener) getActivity();
 		startBus();
 	}
 
@@ -101,21 +84,20 @@ public class ChooseServerDialog extends DialogFragment implements chord.Connecti
 
 		final ListView serversListView = (ListView) view.findViewById(R.id.servers_list_view);
 		serversListView.setOnItemClickListener(this);
-		mServerAdapter = new ServerAdapter();
-		serversListView.setAdapter(mServerAdapter);
+		mClientAdapter = new ClientAdapter();
+		serversListView.setAdapter(mClientAdapter);
 		return view;
 	}
 
 	@Override
 	public void onDestroy() {
 		stopBus();
-		mConnectionChord.stopChord();
 		super.onDestroy();
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		mOnServerChosenListener.onServerChosen(((ServerAdapter) parent.getAdapter()).getItem(position));
+		mOnClientAddedListener.onClientAdded(((ClientAdapter) parent.getAdapter()).getItem(position));
 		dismiss();
 	}
 
@@ -128,24 +110,23 @@ public class ChooseServerDialog extends DialogFragment implements chord.Connecti
 	public void stopBus() {
 		mBus.unregister(this);
 	}
-
-	@Override
+	
 	public void onChanged(List<String> availableServers) {
-		mServerAdapter.setServersList(availableServers);
+		mClientAdapter.setClientsList(availableServers);
 	}
 
 	/**
 	 * Interface definition for a callback to be invoked when server is chosen.
 	 */
-	public interface OnServerChosenListener {
+	public interface OnClientAddedListener {
 
 		/**
 		 * Called when a view with server's name has been clicked.
 		 * 
-		 * @param serverName
+		 * @param clientName
 		 *            name of the clicked server
 		 */
-		void onServerChosen(String serverName);
+		void onClientAdded(String clientName);
 
 	}
 
@@ -158,32 +139,32 @@ public class ChooseServerDialog extends DialogFragment implements chord.Connecti
 
 	}
 
-	private class ServerAdapter extends BaseAdapter {
+	private class ClientAdapter extends BaseAdapter {
 
-		private final List<String> mServers;
+		private final List<String> mClients;
 
-		public ServerAdapter() {
+		public ClientAdapter() {
 			super();
-			mServers = new ArrayList<String>();
+			mClients = new ArrayList<String>();
 		}
 
-		public void setServersList(List<String> servers) {
-			if (!(mServers.size() == servers.size() && mServers.containsAll(servers))) {
-				mServers.clear();
-				mServers.addAll(servers);
-				Collections.sort(mServers);
+		public void setClientsList(List<String> servers) {
+			if (!(mClients.size() == servers.size() && mClients.containsAll(servers))) {
+				mClients.clear();
+				mClients.addAll(servers);
+				Collections.sort(mClients);
 				notifyDataSetChanged();
 			}
 		}
 
 		@Override
 		public int getCount() {
-			return mServers.size();
+			return mClients.size();
 		}
 
 		@Override
 		public String getItem(int position) {
-			return mServers.get(position);
+			return mClients.get(position);
 		}
 
 		@Override
@@ -194,9 +175,15 @@ public class ChooseServerDialog extends DialogFragment implements chord.Connecti
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			final TextView textView = (TextView) View.inflate(getActivity(), R.layout.server_name_text_view, null);
-			textView.setText(mServers.get(position));
+			textView.setText(mClients.get(position));
 			return textView;
 		}
+	}
+
+	@Override
+	public void onPeersAvailable(WifiP2pDeviceList arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

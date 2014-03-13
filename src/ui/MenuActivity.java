@@ -18,9 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.wifidirect.R;
-import ui.ChooseServerDialog.OnServerChosenListener;
+import ui.ChooseClientsDialog.OnClientAddedListener;
 
-public class MenuActivity extends Activity implements OnServerChosenListener {
+public class MenuActivity extends Activity implements OnClientAddedListener {
 
 	public static final String TAG = "Poker";
 	public static final String POKER_PREFERENCES = "POKER_PREFERENCES";
@@ -98,24 +98,14 @@ public class MenuActivity extends Activity implements OnServerChosenListener {
 	}
 
 	public void serverClick(View v) {
-		startActivity(new Intent(this, GameActivity.class));
+		startActivity(new Intent(this, ServerActivity.class));
 	}
 
 	public void clientClick(View v) {
 		mClientButton.setEnabled(false);
-		final ChooseServerDialog chooseServerDialog = new ChooseServerDialog();
+		final ChooseClientsDialog chooseServerDialog = new ChooseClientsDialog();
 		final FragmentManager fragmentManager = getFragmentManager();
 		chooseServerDialog.show(fragmentManager, "");
-	}
-
-	public void settingsClick(View v) {
-		startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
-	}
-
-	public void aboutClick(View v) {
-		final AboutDialog aboutDialog = new AboutDialog();
-		final FragmentManager fragmentManager = getFragmentManager();
-		aboutDialog.show(fragmentManager, "");
 	}
 
 	public void enableButtons(boolean enabled) {
