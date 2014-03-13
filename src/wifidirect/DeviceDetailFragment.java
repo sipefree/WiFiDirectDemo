@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.example.android.wifidirect;
+package wifidirect;
 
 import ui.WiFiDirectActivity;
+import wifidirect.DeviceListFragment.DeviceActionListener;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -32,7 +33,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.wifidirect.DeviceListFragment.DeviceActionListener;
+import com.example.android.wifidirect.R;
 
 /**
  * A fragment that manages a particular peer and allows interaction with device

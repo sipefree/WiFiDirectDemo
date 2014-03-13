@@ -18,6 +18,13 @@ package ui;
 
 import java.util.ArrayList;
 
+import wifidirect.DeviceDetailFragment;
+import wifidirect.DeviceListFragment;
+import wifidirect.PlayerInfo;
+import wifidirect.WiFiDirectBroadcastReceiver;
+import wifidirect.DeviceDetailFragment.NewPlayerListener;
+import wifidirect.DeviceListFragment.DeviceActionListener;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -36,13 +43,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.android.wifidirect.DeviceDetailFragment;
-import com.example.android.wifidirect.DeviceListFragment;
-import com.example.android.wifidirect.PlayerInfo;
 import com.example.android.wifidirect.R;
-import com.example.android.wifidirect.WiFiDirectBroadcastReceiver;
-import com.example.android.wifidirect.DeviceDetailFragment.NewPlayerListener;
-import com.example.android.wifidirect.DeviceListFragment.DeviceActionListener;
 import com.example.android.wifidirect.R.id;
 import com.example.android.wifidirect.R.layout;
 import com.example.android.wifidirect.R.menu;

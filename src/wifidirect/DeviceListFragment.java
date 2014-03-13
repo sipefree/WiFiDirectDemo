@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-package com.example.android.wifidirect;
+package wifidirect;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.android.wifidirect.R;
 
 import ui.WiFiDirectActivity;
 

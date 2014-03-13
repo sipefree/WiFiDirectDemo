@@ -25,7 +25,7 @@
         android:id="@+id/frag_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        class="com.example.android.wifidirect.DeviceListFragment"
+        class="wifidirect.DeviceListFragment"
         tools:layout="@layout/row_devices" >
     </fragment>
 
@@ -33,7 +33,7 @@
         android:id="@+id/frag_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        class="com.example.android.wifidirect.DeviceDetailFragment"
+        class="wifidirect.DeviceDetailFragment"
         tools:layout="@layout/device_detail" >
 </fragment>
 

@@ -1,8 +1,10 @@
-package com.example.android.wifidirect;
+package wifidirect;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+
+import com.example.android.wifidirect.R;
 
 import android.app.Activity;
 import android.os.Bundle;

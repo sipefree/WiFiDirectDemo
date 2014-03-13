@@ -1,4 +1,4 @@
-package com.example.android.wifidirect;
+package wifidirect;
 
 import java.io.Serializable;
 
